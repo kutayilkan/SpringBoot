@@ -1,5 +1,6 @@
 package com.hoodzie.springbootstart.user.business.concretes;
 
+import com.hoodzie.springbootstart.core.exceptions.UserNotFoundException;
 import com.hoodzie.springbootstart.user.business.abstracts.UserService;
 import com.hoodzie.springbootstart.user.entities.dtos.UserDTO;
 import org.springframework.stereotype.Component;
@@ -28,4 +29,20 @@ public class UserManager implements UserService {
     public UserDTO getUserById(Long userId) {
         return users.stream().filter(u -> u.getId().equals(userId)).findFirst().orElse(null);
     }
+
+    @Override
+    public UserDTO saveUser(UserDTO user) {
+        UserDTO last = users.get(users.size() - 1);
+        long id = last.getId() + 1;
+        user.setId(id);
+        users.add(user);
+        return user;
+    }
+
+    @Override
+    public void deleteUserById(Long userId) throws UserNotFoundException {
+        users.removeIf(u -> u.getId().equals(userId));
+    }
+
+
 }

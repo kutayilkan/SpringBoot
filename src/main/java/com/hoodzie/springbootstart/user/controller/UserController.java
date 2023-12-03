@@ -3,6 +3,7 @@ package com.hoodzie.springbootstart.user.controller;
 import com.hoodzie.springbootstart.core.exceptions.UserNotFoundException;
 import com.hoodzie.springbootstart.user.business.abstracts.UserService;
 import com.hoodzie.springbootstart.user.entities.dtos.UserDTO;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity saveUser(@RequestBody UserDTO user){
+    public ResponseEntity saveUser(@Valid @RequestBody UserDTO user){
         UserDTO savedUser = userService.saveUser(user);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()

@@ -27,7 +27,10 @@ public class UserManager implements UserService {
 
     @Override
     public UserDTO getUserById(Long userId) {
-        return users.stream().filter(u -> u.getId().equals(userId)).findFirst().orElse(null);
+        return users.stream().filter(u -> u.getId().equals(userId)).findFirst().orElseThrow(
+                () -> new UserNotFoundException(String.format("User Not Found ID : %s", userId))
+                );
+
     }
 
     @Override

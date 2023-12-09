@@ -1,7 +1,14 @@
 server:
-  port: 8088
+  port: 8080
 
 
 spring:
   profiles:
     active: Test
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

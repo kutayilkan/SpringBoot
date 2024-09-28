@@ -5,7 +5,11 @@ server:
 spring:
   profiles:
     active: Test
-
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
 
 management:
   endpoints:

@@ -6,14 +6,13 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Entity
+@Entity(name = "user_details")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
-@Table(name = "user")
 public class User {
 
     @Id
